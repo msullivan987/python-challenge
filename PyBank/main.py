@@ -16,9 +16,11 @@ with open (budget_data) as csvfile:
     total_profits = 0
     previous_row_profit = None
     monthly_changes = []
-    average_daily_change = int()
-    greatest_increase = int()
-    greatest_decrease = int()
+    monthly_change = 0
+    greatest_increase = 0
+    greatest_decrease = 0
+    best_month = str()
+    worst_month = str()
 
     for row in csvreader:
         monthly_profit = int(row[1])
@@ -31,6 +33,14 @@ with open (budget_data) as csvfile:
             monthly_change = monthly_profit - previous_row_profit
        
             monthly_changes.append(monthly_change)
+
+        if monthly_change >  greatest_increase:
+            greatest_increase = monthly_change
+            best_month = row[0]
+        
+        if monthly_change < greatest_decrease:
+            greatest_decrease = monthly_change
+            worst_month = row[0]
        
         previous_row_profit = monthly_profit
         
@@ -40,10 +50,6 @@ with open (budget_data) as csvfile:
         for number in numbers_list:
             total += number
         return total/length
-    
-    # for monthly_change in [monthly_changes]: 
-    #     if monthly_change 
-    
 
 
     #This will be our big print statement
@@ -52,7 +58,8 @@ with open (budget_data) as csvfile:
     print(f"Total Months: {number_of_months}")
     print("Total: $" + str(round(total_profits)))
     print(average(monthly_changes))
-    # print(monthly_changes)
+    print(f"Greatest Increase in Profits: {best_month} (${greatest_increase})") 
+    print(f"Greatest Decrease in Profits: {worst_month} (${greatest_decrease})")
     
 
     #Here I'll put the thing to make a .txt file
