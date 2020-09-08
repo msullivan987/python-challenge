@@ -57,7 +57,7 @@ with open (budget_data) as csvfile:
     print("----------------------------")
     print(f"Total Months: {number_of_months}")
     print("Total: $" + str(round(total_profits)))
-    print(average(monthly_changes))
+    print("Average Change: $" + str(round(average(monthly_changes),2)))
     print(f"Greatest Increase in Profits: {best_month} (${greatest_increase})") 
     print(f"Greatest Decrease in Profits: {worst_month} (${greatest_decrease})")
     
