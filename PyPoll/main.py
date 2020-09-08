@@ -30,15 +30,20 @@ with open (election_data) as csvfile:
         
         #update current candidate dict value by adding 1
         else:
-            candidate_dict[candidate] = candidate_dict[candidate] + 1
+            candidate_dict[candidate] = candidate_dict[candidate] + 1    
+
     
     #Printing results to terminal
     print("Election Results")
     print("-------------------------")
     print(f"Total Votes: {votes}")
     print("-------------------------")
-    print(candidate_dict)
+    
+    #loop through candidate dicionary
+    for candidate , vote_count in candidate_dict.items():
+        print(f"{candidate}: " + str("{0:.3%}".format(vote_count/votes)) + f" ({vote_count})")
     print("-------------------------")
+    
+    
     print(f"Winner: ")
     print("-------------------------")
-
