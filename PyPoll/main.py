@@ -47,3 +47,21 @@ with open (election_data) as csvfile:
     print("-------------------------")
 
 
+    #create a text file with the election data
+
+    file = open(os.path.join("Analysis","election_results.txt"),"w")
+
+    file.write("Election Results \n")
+    file.write("-------------------------\n")
+    file.write(f"Total Votes: {votes}\n")
+    file.write("-------------------------\n")
+    
+    for candidate , vote_count in candidate_dict.items():
+        file.write(f"{candidate}: " + str("{0:.3%}".format(vote_count/votes)) + f" ({vote_count})\n")
+    file.write("-------------------------\n")
+    
+    winner = max(candidate_dict, key=candidate_dict.get)
+    file.write(f"Winner: {winner}\n")
+    file.write("-------------------------\n")
+    
+    file.close()

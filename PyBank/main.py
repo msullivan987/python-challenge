@@ -67,5 +67,16 @@ with open (budget_data) as csvfile:
     print(f"Greatest Increase in Profits: {best_month} (${greatest_increase})") 
     print(f"Greatest Decrease in Profits: {worst_month} (${greatest_decrease})")
     
+    #Create a txt file with the financial analysis
 
-    #Export a .txt file
+    file = open(os.path.join("Analysis","financial_analysis.txt"),"w")
+
+    file.write("Financial Analysis \n")
+    file.write("----------------------------\n")
+    file.write(f"Total Months: {number_of_months}\n")
+    file.write("Total: $" + str(round(total_profits)) + "\n")
+    file.write("Average Change: $" + str(round(average(monthly_changes),2)) + "\n")
+    file.write(f"Greatest Increase in Profits: {best_month} (${greatest_increase})\n") 
+    file.write(f"Greatest Decrease in Profits: {worst_month} (${greatest_decrease})\n")
+    
+    file.close()
