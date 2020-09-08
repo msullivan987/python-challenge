@@ -23,17 +23,22 @@ with open (budget_data) as csvfile:
     worst_month = str()
 
     for row in csvreader:
+        #set monthly profit to the current row's profit
         monthly_profit = int(row[1])
         
+        #find the total number of months
         number_of_months += 1
 
+        #add current monthly profit to total profit
         total_profits += monthly_profit
 
+        #create a list of monthly changes starting with the second month 
         if previous_row_profit is not None:
             monthly_change = monthly_profit - previous_row_profit
        
             monthly_changes.append(monthly_change)
 
+        #next two if statements store greatest and smallest changes
         if monthly_change >  greatest_increase:
             greatest_increase = monthly_change
             best_month = row[0]
@@ -42,6 +47,7 @@ with open (budget_data) as csvfile:
             greatest_decrease = monthly_change
             worst_month = row[0]
        
+        #keep track of the profit for this row to use next loop
         previous_row_profit = monthly_profit
         
     def average(numbers_list):
@@ -52,7 +58,7 @@ with open (budget_data) as csvfile:
         return total/length
 
 
-    #This will be our big print statement
+    #Final analysis and print statement
     print("Financial Analysis")
     print("----------------------------")
     print(f"Total Months: {number_of_months}")
@@ -62,4 +68,4 @@ with open (budget_data) as csvfile:
     print(f"Greatest Decrease in Profits: {worst_month} (${greatest_decrease})")
     
 
-    #Here I'll put the thing to make a .txt file
+    #Export a .txt file
