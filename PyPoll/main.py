@@ -6,15 +6,12 @@ election_data = os.path.join("Resources","election_data.csv")
 votes = 0
 winner = str()
 candidate_dict = {}
-candidate_list = []
 
 with open (election_data) as csvfile:
     
     csvreader = csv.reader(csvfile,delimiter = ",")
 
     csv_header = next(csvreader)
-  
-    candidate_number = 0
     
     for row in csvreader:
         
@@ -44,6 +41,9 @@ with open (election_data) as csvfile:
         print(f"{candidate}: " + str("{0:.3%}".format(vote_count/votes)) + f" ({vote_count})")
     print("-------------------------")
     
-    
-    print(f"Winner: ")
+    #find the winner of the election
+    winner = max(candidate_dict, key=candidate_dict.get)
+    print(f"Winner: {winner}")
     print("-------------------------")
+
+
